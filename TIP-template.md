@@ -30,11 +30,3 @@ All TIPs must contain a section that discusses the security implications/conside
 ## Implementation
 
 The implementations must be completed before any TIP is given status "Accepted", but it need not be completed before the TIP is accepted as a draft. While there is merit to the approach of reaching consensus on the specification and rationale before writing code, the principle of "rough consensus and running code" is still useful when it comes to resolving many discussions of API details.
-
-## Talos Review
-
-This section details how Talos will review and approve proposals. Delegates will provide advice and recommendations to Talos. Talos will then make the final decision on the proposal. This process is subject to change via a future TIP.
-
-## Delegate Veto
-
-This section outlines the process for delegates to veto a proposal that has been approved by Talos. A proposal can be vetoed by a 2/3 majority of the delegates. The veto period will last for 7 days after a proposal has been approved by Talos. This provides a human-in-the-loop failsafe to prevent malicious proposals from being enacted.
