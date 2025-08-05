@@ -1,0 +1,79 @@
+---
+tip: 7
+title: PancakeSwap Partnership
+author: Chef Maroon
+status: Draft
+type: Standards Track
+created: 2025-08-05
+---
+
+## Abstract
+
+We propose a strategic partnership with Talos to migrate $900k of $T liquidity into a concentrated liquidity pool on PancakeSwap at a 0.25% fee tier, while allocating the remaining $900K to Camelot.
+
+This approach improves capital efficiency, deepens market liquidity, and supports Talos’ long-term growth. PancakeSwap will provide daily $CAKE liquidity rewards, a staking pool for $T, marketing support, and liquidity management advice.
+
+## Motivation
+
+Currently, liquidity is provided across the full range on Uniswap. Moving liquidity into a concentrated liquidity pool on PancakeSwap achieves the following benefits for Talos:
+* Concentrated liquidity reduces slippage for traders, increasing trading volume
+* Balanced fee tier to maximize liquidity provider (LP) yields while maintaining high volumes
+* Increased LP yields from $CAKE incentives, attracting more liquidity
+* Increased token utility with a $T staking pool that earns $CAKE
+* Increased exposure for Talos with support from PancakeSwap’s 2.1M X followers, attracting attention beyond Arbitrum
+
+## Specification
+
+Liquidity Migration
+* We propose allocating $900k of liquidity (or half of whatever Talos controls) to PancakeSwap and the other half to Camelot
+    * Migrate ~$900k in $T liquidity from Uniswap to a T/ETH 0.25% concentrated liquidity pool on PancakeSwap
+    * Migrate ~$900K in $T liquidity from Uniswap to a new concentrated liquidity pool on Camelot, based on TIP-0004
+
+Pool Configuration on PancakeSwap
+* Pool Type: PancakeSwap v3 (concentrated liquidity pool)
+* Fee Tier: 0.25%
+* Asset: T/ETH
+* Future Enhancement: Upon PancakeSwap Infinity’s Arbitrum deployment, we will propose migrating liquidity to an Infinity pool and employ a suitable hook to increase LP profitability e.g. a dynamic fee hook
+
+$CAKE Incentives (90 Days)
+* T/WETH (0.25%) pool to receive 60 $CAKE per day for 90 days (~$14,000, ~6.3% APR based on $900k TVL)
+* Beyond 90 days, we will still continue to emit $CAKE incentives to the pair, but will adjust the emission rate at our discretion based on market conditions
+
+$T Staking Pool (90 days)
+* $8,000 worth of $CAKE rewards to be distributed to $T stakers over 90 days via a Syrup Pool on PancakeSwap (Stake $T, Earn $CAKE)
+* Assuming a steady state APR of 10%, this Syrup Pool will help to soft-lock $324,444 of $T over a 90-day period
+
+Marketing Support
+* PancakeSwap will boost engagement for Talos via the following marketing campaigns:
+    * Dedicated socials post to announce the launch of $T being live for trading on PancakeSwap as well as $T’s Syrup Pool
+    * Invite the creators of Talos on a podcast and/or an AMA with PancakeSwap to share more about the plans for Talos while engaging an audience beyond Arbitrum
+    * Organize a trading competition to boost $T’s trading volume on Arbitrum, with rewards sponsored by Talos - PancakeSwap will handle the rules, set-up, marketing and data tracking (this will need a separate TIP if there is interest from the community)
+
+Liquidity Management Advice
+* PancakeSwap will advise on price ranges during the liquidity seeding process
+
+## Rationale
+
+* PancakeSwap is a well-known DEX with $67B past 30-day volume, >5M monthly active users, and $2B TVL - partnering with PancakeSwap will allow Talos to tap on a market-leading DEX with proven traction and expertise
+* PancakeSwap is ready to commit tangible incentives to boost Talos' onchain liquidity as well as increase utility of $T via additional staking yield
+* PancakeSwap has 2.1M followers on X, with a large part of them likely not native to Arbitrum - collaborating with PancakeSwap on marketing initiatives will help bring net new users to Talos
+* This proposal allows Talos to work with both the second largest DEX by volume across all chains as well as the leading Arbitrum-native DEX, building on the foundations of TIP-0004
+* A concentrated liquidity pool allows Talos to increase its capital efficiency for its liquidity pool, resulting in lower slippage for traders and potentially higher volumes
+* A 0.25% fee tier allows traders to experience manageable fees when trading $T, while still providing good yield for Talos as the main liquidity provider
+
+## Security Considerations
+
+* PancakeSwap is heavily audited and battle-tested for close to 5 years. A list of audits can be found here: https://docs.pancakeswap.finance/welcome-to-pancakeswap/audits
+
+## Implementation
+
+1. Liquidity Migration
+    * Talos coordinates with PancakeSwap to initialize the concentrated liquidity pool with the agreed upon parameters, while migrating the agreed amount of liquidity over
+2. $CAKE Incentives
+    * Once liquidity is migrated, PancakeSwap will start emitting $CAKE incentives to the T/ETH 0.25% liquidity pool. Talos can then stake their liquidity position into the farm contract to start earning $CAKE rewards, or choose to leave it for other users to boost liquidity in the pool
+3. $T Staking Pool
+    * At around the same time, PancakeSwap will initiate a $T Syrup Pool on Arbitrum so that $T holders can now stake $T in the pool to earn $CAKE yield
+4. Marketing Support
+    * Once all previous steps are done, PancakeSwap will publish a post on its socials to announce the go-live of the above features
+    * If Talos wishes, PancakeSwap will organize an AMA and/or a podcast at its convenience
+
