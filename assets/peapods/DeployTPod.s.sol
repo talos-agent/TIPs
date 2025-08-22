@@ -50,21 +50,21 @@ contract DeployTLVFPod is Script {
                 abi.encode(_c, _getFees(), _t, _w, address(0), false),
                 _getImmutables(
                     0xaf88d065e77c8cC2239327C5EDb3A432268e5831, // USDC
-                    0x98Bb5Ae50478d7e012326E067e1e49db1e59Fe39,
-                    0x14940e0b3Fa7Ed05bAEb348c29864331D59396BA,
-                    0xe8869F393d083bc41358b6C13B1eBce54fE11458,
-                    0x22dc5B739B34F98bE2f2f262bD104ed9AB1AAD7A
+                    0x98Bb5Ae50478d7e012326E067e1e49db1e59Fe39, // ProtocolFeeRouter
+                    0x14940e0b3Fa7Ed05bAEb348c29864331D59396BA, // RewardsWhitelist
+                    0xAdb0704ac0F468dF04C1f0957C80564D5949466B, // V3TwapUtilities (Uniswap)
+                    0x17d234a2F01467F06a8f41445916503539E0a33C // UniswapDexAdapter
                 )
             ),
             abi.encode(
-                0xAa95eeA9Afe4945966Bf66ca2393F0FC50cBd0A0,
-                0x48B50c792D993A56cdF23B0AD64c257F2A3888a1,
-                0x0D71e8487DF7Ed8ac111Bfab9CC44cC69bAC6653,
+                0xAa95eeA9Afe4945966Bf66ca2393F0FC50cBd0A0, // ChainlinkSinglePriceOracle
+                0x48B50c792D993A56cdF23B0AD64c257F2A3888a1, // CamelotV3SinglePriceOracle
+                0x0D71e8487DF7Ed8ac111Bfab9CC44cC69bAC6653, // DIAOracleV2SinglePriceOracle
                 0xaf88d065e77c8cC2239327C5EDb3A432268e5831, // USDC
                 false,
                 false,
                 address(0),
-                0xD971fF5a7530919ae67e06695710b262A72E8f2f
+                0xD971fF5a7530919ae67e06695710b262A72E8f2f // Camelot Algebra T/WETH
             ),
             abi.encode(
                 address(0),
@@ -73,7 +73,7 @@ contract DeployTLVFPod is Script {
                 address(0),
                 address(0),
                 address(0),
-                0xEC8a490000E9553A373E54ED71C09C7aA73EeAf8 // V2ReservesCamelot
+                0xeC77fcB326d64D0E9a98A9de624AeDA10A230ede // V2ReservesUniswap
             ),
             abi.encode(
                 uint32(5000), // uint32 _maxOracleDeviation
