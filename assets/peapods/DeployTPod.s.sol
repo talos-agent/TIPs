@@ -45,9 +45,9 @@ contract DeployTLVFPod is Script {
         (address _pod,,,) = ILeverageFactory(0xf79E475e8f13F824aA9C9470a726E754da1Dd261).createPodAndAddLvfSupport(
             0xaf88d065e77c8cC2239327C5EDb3A432268e5831, // USDC
             abi.encode(
-                "Talos LFV Pod",
+                "Talos LVF Pod",
                 "pT",
-                abi.encode(_c, _getFees(), _t, _w, address(0), false),
+                abi.encode(_c, _getFees(), _t, _w, address(0), true),
                 _getImmutables(
                     0xaf88d065e77c8cC2239327C5EDb3A432268e5831, // USDC
                     0x98Bb5Ae50478d7e012326E067e1e49db1e59Fe39, // ProtocolFeeRouter
