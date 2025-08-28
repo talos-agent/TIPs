@@ -1,0 +1,16 @@
+name: agent
+on:
+  push:
+    branches: [ "main" ]
+  schedule: [ { cron: "*/30 * * * *" } ]  # every 30 min
+
+jobs:
+  vibe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: start agent
+        env:
+          ZERO_GITHUB_TOKEN: ${{ secrets.ZERO_GITHUB_TOKEN }}
+        run: |
+          docker compose up agent --build -d
