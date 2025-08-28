@@ -1,39 +1,6 @@
----
-tip: <to be assigned>
-title: <TIP Title>
-author: <list of authors' real names and email addrs>
-status: <Draft | Active | Accepted | Rejected | Withdrawn>
-type: <Standards Track | Informational | Process>
-created: <date created on, in ISO 8601 (yyyy-mm-dd) format>
----
+## Attacker's Mindset
 
-## Abstract
-
-A short (~200 word) description of the technical issue being addressed.
-
-## Motivation
-
-The motivation is critical for TIPs that want to change the Talos protocol. It should clearly explain why the existing protocol specification is inadequate to address the problem that the TIP solves. TIP submissions without sufficient motivation may be rejected outright.
-
-## Specification
-
-The technical specification should describe the syntax and semantics of any new feature. The specification should be detailed enough to allow competing, interoperable implementations for any of the current Talos platforms.
-
-## Rationale
-
-The rationale fleshes out the specification by describing what motivated the design and why particular design decisions were made. It should describe alternate designs that were considered and related work, e.g. how the feature is supported in other systems. The rationale may also provide evidence of consensus within the community, and should discuss important objections or concerns raised during discussion.
-
-## Security Considerations
-
-All TIPs must contain a section that discusses the security implications/considerations relevant to the proposed change. Include information that might be important for security discussions, surfaces risks and can be used throughout the life cycle of the proposal. E.g. include security-relevant design decisions, concerns, important discussions, implementation-specific guidance and pitfalls, an outline of threats and risks and how they are being addressed. TIP submissions missing the "Security Considerations" section will be rejected. A TIP cannot proceed to status "Accepted" without a Security Considerations discussion deemed sufficient by the reviewers.
-
-## Security Checklist
-
-This checklist is not exhaustive. It is a tool to help TIP authors and reviewers think about security. TIP authors are encouraged to consult other resources and experts.
-
-### Attacker's Mindset
-
-#### Denial-Of-Service(DOS) Attack
+### Denial-Of-Service(DOS) Attack
 - [ ] Is the withdrawal pattern followed to prevent denial of service?
 - [ ] Is there a minimum transaction amount enforced?
 - [ ] How does the protocol handle tokens with blacklisting functionality?
@@ -41,48 +8,48 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] What happens with low decimal tokens that might cause DOS?
 - [ ] Does the protocol handle external contract interactions safely?
 
-#### Donation Attack
+### Donation Attack
 - [ ] Does the protocol rely on `balance` or `balanceOf` instead of internal accounting?
 
-#### Front-running Attack
+### Front-running Attack
 - [ ] Are "get-or-create" patterns protected against front-running attacks?
 - [ ] Are two-transaction actions designed to be safe from frontrunning?
 - [ ] Can users maliciously cause others' transactions to revert by preempting with dust?
 - [ ] Is the protocol using a properly user-bound commit-reveal scheme?
 
-#### Griefing Attack
+### Griefing Attack
 - [ ] Is there an external function that relies on states that can be changed by others?
 - [ ] Can the contract operations be manipulated with precise gas limit specifications?
 
-#### Miner Attack
+### Miner Attack
 - [ ] Is block.timestamp used for time-sensitive operations?
 - [ ] Is the contract using block properties like timestamp or difficulty for randomness generation?
 - [ ] Is contract logic sensitive to transaction ordering?
 
-#### Price Manipulation Attack
+### Price Manipulation Attack
 - [ ] Is the price calculated by the ratio of token balances?
 - [ ] Is the price calculated from DEX liquidity pool spot prices?
 
-#### Reentrancy Attack
+### Reentrancy Attack
 - [ ] Is there a view function that can return a stale value during interactions?
 - [ ] Is there any state change after interaction to an external contract?
 
-#### Replay Attack
+### Replay Attack
 - [ ] Are there protections against replay attacks for failed transactions?
 - [ ] Is there protection against replaying signatures on different chains?
 
-#### Rug Pull
+### Rug Pull
 - [ ] Can the admin of the protocol pull assets from the protocol?
 
-#### Sandwich Attack
+### Sandwich Attack
 - [ ] Does the protocol have an explicit slippage protection on user interactions?
 
-#### Sybil Attack
+### Sybil Attack
 - [ ] Is there a mechanism depending on the number of users?
 
-### Basics
+## Basics
 
-#### Access Control
+### Access Control
 - [ ] Did you clarify all the actors and their allowed interactions in the protocol?
 - [ ] Are there functions lacking proper access controls?
 - [ ] Do certain addresses require whitelisting?
@@ -91,7 +58,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Does the contract inherit others?
 - [ ] Does the contract use `tx.origin` in validation?
 
-#### Array / Loop
+### Array / Loop
 - [ ] What happens on the first and the last cycle of the iteration?
 - [ ] How does the protocol remove an item from an array?
 - [ ] Does any function get an index of an array as an argument?
@@ -104,13 +71,13 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is there a loop to handle batch fund transfer?
 - [ ] Is there a break or continue inside a loop?
 
-#### Block Reorganization
+### Block Reorganization
 - [ ] Does the protocol implement a factory pattern using the CREATE opcode?
 
-#### Event
+### Event
 - [ ] Does the protocol emit events on important state changes?
 
-#### Function
+### Function
 - [ ] Are the inputs validated?
 - [ ] Are the outputs validated?
 - [ ] Can the function be front-run?
@@ -121,21 +88,21 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Does this function need to be called by only EOA or only contracts?
 - [ ] Does this function need to be restricted for specific callers?
 
-#### Inheritance
+### Inheritance
 - [ ] Is it necessary to limit visibility of parent contract's public functions?
 - [ ] Were all necessary functions implemented to fulfill inheritance purpose?
 - [ ] Has the contract implemented an interface?
 - [ ] Does the inheritance order matter?
 
-#### Initialization
+### Initialization
 - [ ] Are important state variables initialized properly?
 - [ ] Has the contract inherited OpenZeppelin's Initializable?
 - [ ] Does the contract have a separate initializer function other than a constructor?
 
-#### Map
+### Map
 - [ ] Is there need to delete the existing item from a map?
 
-#### Math
+### Math
 - [ ] Is the mathematical calculation accurate?
 - [ ] Is there any loss of precision in time calculations?
 - [ ] Are you aware that expressions like `1 day` are cast to `uint24`, potentially causing overflows?
@@ -149,7 +116,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Have you taken into consideration mathematical operations in inline assembly?
 - [ ] What happens for the minimum/maximum values included in the calculation?
 
-#### Payment
+### Payment
 - [ ] Is it possible for the receiver to revert?
 - [ ] Does the function gets the payment amount as a parameter?
 - [ ] Are there vulnerabilities related to force-feeding?
@@ -158,7 +125,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is `transfer()` or `send()` used for sending ETH?
 - [ ] Is it possible for native ETH to be locked in the contract?
 
-#### Proxy/Upgradable
+### Proxy/Upgradable
 - [ ] Is there a constructor in the proxied contract?
 - [ ] Is the `initializer` modifier applied to the `initialization()` function?
 - [ ] Is the upgradable version used for initialization?
@@ -170,11 +137,11 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Could an upgrade of the contract result in storage collision?
 - [ ] Are the order and types of storage variables consistent between upgrades?
 
-#### Type
+### Type
 - [ ] Is there a forced type casting?
 - [ ] Does the protocol use time units like `days`?
 
-#### Version Issues
+### Version Issues
 - [ ] EIP-4758: Does the contract use `selfdestruct()`?
 - [ ] Does the contract use `ERC2771Context`? (version >=4.0.0 <4.9.3)
 - [ ] Does the contract use OpenZeppelin's GovernorCompatibilityBravo? (version >=4.3.0 <4.8.3)
@@ -243,7 +210,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Are there any functions with the same name and parameter type inside the same contract? (version =0.7.1)
 - [ ] Does the contract use tuple assignments with multi-stack-slot components, like nested tuples or dynamic calldata references? (version 0.1.6~0.6.5)
 
-### Centralization Risk
+## Centralization Risk
 - [ ] What happens to the user accounting in special conditions?
 - [ ] Is there a pause mechanism?
 - [ ] Is there a functionality for the admin to withdraw from the protocol?
@@ -252,9 +219,9 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] How is the ownership/privilege transferred??
 - [ ] Is there a proper validation in privileged setter functions?
 
-### Defi
+## Defi
 
-#### AMM/Swap
+### AMM/Swap
 - [ ] Is hardcoded slippage used?
 - [ ] Is there a deadline protection?
 - [ ] Is there a validation check for protocol reserves?
@@ -270,11 +237,11 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is the slippage calculated on-chain?
 - [ ] Is the slippage parameter enforced at the last step before transferring funds to users?
 
-#### FlashLoan
+### FlashLoan
 - [ ] Is withdraw disabled in the same block to prevent flashloan attacks?
 - [ ] Can ERC4626 be manipulated through flashloans?
 
-#### General
+### General
 - [ ] Can the protocol handle ERC20 tokens with decimals other than 18?
 - [ ] Are there unexpected rewards accruing for user deposited assets?
 - [ ] Could direct transfers of funds introduce vulnerabilities?
@@ -285,7 +252,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is it possible to withdraw in the same transaction of deposit?
 - [ ] Does the protocol aim to support ALL kinds of ERC20 tokens?
 
-#### Lending
+### Lending
 - [ ] Will the liquidation process function effectively during rapid market downturns?
 - [ ] Can a position be liquidated if the loan remains unpaid or if the collateral falls below the required threshold?
 - [ ] Is it possible for a user to gain undue profit from self-liquidation?
@@ -299,7 +266,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is there a scenario where a liquidator might receive a lesser amount than anticipated?
 - [ ] Is it possible for a user to be in a condition where they cannot repay their loan?
 
-#### Liquid Staking Derivatives
+### Liquid Staking Derivatives
 - [ ] Can a malicious validator front-run setting withdrawal credentials?
 - [ ] Can the exchange rate repricing update be sandwich attacked to drain ETH from the protocol?
 - [ ] Can re-entrancy when ETH is sent during rewards/withdrawals or when NFTs are minted via `_safeMint` (to represent pending withdrawals) be used to drain the protocol's ETH?
@@ -310,7 +277,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] If using a Proof Of Reserves Oracle, does the protocol check for stale data?
 - [ ] Does unnecessary precision loss occur in deposit, withdrawal or reward calculations?
 
-#### Oracle
+### Oracle
 - [ ] Is the Oracle using deprecated Chainlink functions?
 - [ ] Is the returned price validated to be non-zero?
 - [ ] Is the price update time validated?
@@ -326,12 +293,12 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is the contract vulnerable to oracle manipulation, especially using spot prices from AMMs?
 - [ ] How does the system address potential inaccuracies during flash crashes?
 
-#### Staking
+### Staking
 - [ ] Can a user amplify another user's time lock duration by stacking tokens on their behalf?
 - [ ] Can the distribution of rewards be unduly delayed or prematurely claimed?
 - [ ] Are rewards up-to-date in all use-cases?
 
-### External Call
+## External Call
 - [ ] What are the implications if the call reenters a different function?
 - [ ] Is there a multi-call?
 - [ ] What are the risks associated with using delegatecall in smart contracts?
@@ -347,14 +314,14 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is the check-effect-interaction pattern being utilized?
 - [ ] How is the msg.sender handled?
 
-### Hash / Merkle Tree
+## Hash / Merkle Tree
 - [ ] Is the Merkle tree vulnerable to front-running attacks?
 - [ ] Does the claim method validate `msg.sender`?
 - [ ] What is the result when passing a zero hash to the Merkle tree functions?
 - [ ] What occurs if the same proof is duplicated within the Merkle tree?
 - [ ] Are the leaves of the Merkle tree hashed with the claimable address included?
 
-### Heuristics
+## Heuristics
 - [ ] Is there any logic implemented multiple times?
 - [ ] Does the contract use any nested structures?
 - [ ] Is there any unexpected behavior when `src==dst` (or `caller==receiver`)?
@@ -373,9 +340,9 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Are there any code asymmetries?
 - [ ] Does calling a function multiple times with smaller amounts yield the same contract state as calling it once with the aggregate amount?
 
-### Integrations
+## Integrations
 
-#### AAVE / Compound
+### AAVE / Compound
 - [ ] Does the protocol use cETH token?
 - [ ] What happens if the utilization rate is too high, and collateral cannot be retrieved?
 - [ ] What happens if the protocol is paused?
@@ -386,13 +353,13 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] On AAVE, what happens if a user reaches the maximum debt on an isolated asset?
 - [ ] Does borrowing an AAVE siloed asset restrict borrowing other assets?
 
-#### Balancer
+### Balancer
 - [ ] Does the protocol use the Balancer's flashloan?
 - [ ] Does the protocol use Balancer's Oracle? (getTimeWeightedAverage)
 - [ ] Does the protocol use Balancer's Boosted Pool?
 - [ ] Does the protocol use Balancer vault pool liquidity status for any pricing?
 
-#### Chainlink CCIP
+### Chainlink CCIP
 - [ ] Does the receiver contract's `_ccipReceive` function properly validate the `sourceChainSelector` and `sender` address against an allowlist?
 - [ ] Does the sender contract validate the `destinationChainSelector` against an allowlist before calling `ccipSend`?
 - [ ] Does the receiver contract properly decode data (`any2EvmMessage.data`) ?
@@ -402,17 +369,17 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Are extraArgs parameters hardcoded instead of mutable in cross-chain message configurations?
 - [ ] Is there a proper failure handling mechanism for CCIP messages to prevent blocking after Smart Execution window expiration?
 
-#### Chainlink VRF
+### Chainlink VRF
 - [ ] Are all parameters properly verified when Chainlink VRF is called?
 - [ ] Is it guaranteed that the operator holds sufficient LINK in the subscription?
 - [ ] Is a sufficiently high request confirmation number chosen considering chain re-orgs?
 - [ ] Are measures in place to prevent VRF calls from being frontrun?
 
-#### Gnosis Safe
+### Gnosis Safe
 - [ ] Do your modules execute the Guard's hooks?
 - [ ] Does the `execTransactionFromModule()` function increment the nonce?
 
-#### LayerZero
+### LayerZero
 - [ ] Does the `_debitFrom` function in ONFT properly validate token ownership and transfer permissions?
 - [ ] Which type of mechanism are utilized? Blocking or non-blocking?
 - [ ] Is gas estimated accurately for cross-chain messages?
@@ -421,27 +388,27 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Are default contracts used?
 - [ ] Is the correct number of confirmations chosen for the chain?
 
-#### LSD cbETH
+### LSD cbETH
 - [ ] How is the control over the `cbETH`/`ETH` rate determined? Are there specific addresses with this capability due to the `onlyOracle` modifier?
 - [ ] How does the system handle potential decreases in the `cbETH`/`ETH` rate?
 
-#### LSD rETH
+### LSD rETH
 - [ ] Does the application account for potential penalties or slashes?
 - [ ] How does the system manage rewards accrued from staking?
 - [ ] Does the application handle potential reverts in the `burn()` function when there's insufficient ether in the `RocketDepositPool`?
 - [ ] What measures are in place to counter-act potential consensus attacks on RPL nodes?
 - [ ] How does the system handle the conversion between `ETH` and `rETH`?
 
-#### LSD sfrxETH
+### LSD sfrxETH
 - [ ] How does the system handle potential detachment of `sfrxETH` from `frxETH` during reward transfers?
 - [ ] Is the stability of the `sfrxETH`/`ETH` rate guaranteed or can it decrease in the future?
 
-#### LSD stETH
+### LSD stETH
 - [ ] Is the application aware that `stETH` is a rebasing token?
 - [ ] Are you aware of the overhead when withdrawing `stETH`/`wstETH`?
 - [ ] Does the application handle conversions between `stETH` and `wstETH` correctly?
 
-#### Uniswap
+### Uniswap
 - [ ] Is the slippage calculated on-chain?
 - [ ] Are there refunds after swaps?
 - [ ] Is the order of `token0` and `token1` consistent across chains?
@@ -453,14 +420,14 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is `pool.slot0` being used to calculate sensitive information like current price and exchange rates?
 - [ ] Is a hard-coded fee tier parameter being used?
 
-### Low Level
+## Low Level
 - [ ] Is there validation on the size of the input data?
 - [ ] What happens if there is no matching function signature?
 - [ ] Is it checked if the target address of a call has the code?
 - [ ] Is there a check on the return data size when calling precompiled code?
 - [ ] Is there a non-zero check for the denominator?
 
-### Multi-chain/Cross-chain
+## Multi-chain/Cross-chain
 - [ ] Are there assumption of consistency in the `block.number` or `block.timestamp` across chains?
 - [ ] Has the protocol been checked for the target chain differences?
 - [ ] Are the EVM opcodes and operations used by the protocol compatible across all targeted chains?
@@ -475,19 +442,19 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Is `PUSH0` opcode supported for Solidity version `>=0.8.20`?
 - [ ] Are there any attributes attached to the bridged assets?
 
-### Signature
+## Signature
 - [ ] Are signatures guarded against replay attacks?
 - [ ] Are signatures protected against malleability issues?
 - [ ] Does the returned public key from the signature verification match the expected public key?
 - [ ] Is the signature originating from the appropriate entity?
 - [ ] If the signature has a deadline, is it still valid?
 
-### Timelock
+## Timelock
 - [ ] Are timelocks implemented for important changes?
 
-### Token
+## Token
 
-#### Fungible : ERC20
+### Fungible : ERC20
 - [ ] Are safe transfer functions used throughout the contract?
 - [ ] Is there potential for a race condition for approvals?
 - [ ] Could a difference in decimals between ERC20 tokens cause issues?
@@ -505,7 +472,7 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Can the token be paused?
 - [ ] Is the decrease allowance feature of transferFrom() handled correctly when the sender is the caller?
 
-#### Non-fungible : ERC721/1155
+### Non-fungible : ERC721/1155
 - [ ] How are the minting and transfer implemented?
 - [ ] Is the contract safe from reentrancy attack?
 - [ ] Is the OpenZeppelin implementation of ERC721 and ERC1155 safeguarded against reentrancy attacks, especially in the `safeTransferFrom` functions?
@@ -514,7 +481,3 @@ This checklist is not exhaustive. It is a tool to help TIP authors and reviewers
 - [ ] Can the contract support both ERC721 and ERC1155 standards?
 - [ ] What happens to the airdrops that are engaged to specific NFT?
 - [ ] How is the approval/transfer handled for CryptoPunks collection?
-
-## Implementation
-
-The implementations must be completed before any TIP is given status "Accepted", but it need not be completed before the TIP is accepted as a draft. While there is merit to the approach of reaching consensus on the specification and rationale before writing code, the principle of "rough consensus and running code" is still useful when it comes to resolving many discussions of API details.

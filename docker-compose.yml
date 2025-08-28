@@ -1,0 +1,11 @@
+services:
+  nats:
+    image: nats:latest
+    ports:
+      - "4222:4222"
+  agent:
+    build: ./agents/vibe-coder
+    volumes: [ ".:/repo" ]
+    environment:
+      ZERO_GITHUB_TOKEN: ${ZERO_GITHUB_TOKEN}
+    depends_on: [ nats ]
